@@ -33,7 +33,7 @@ public class OrderService {
         List<String> skuCodes = order.getOrderLineItemsList().stream()
                 .map(OrderLineItems::getSkuCode)
                 .toList();
-        // check whether the product exists before placing an order
+        // check whether the product exists before placing an order ( the WebClient implementation)
        InventoryResponse[] inventoryResponsesArray = webClient.get()
                 .uri("http://localhost:8081/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode",skuCodes).build())
